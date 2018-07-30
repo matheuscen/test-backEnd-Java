@@ -1,6 +1,7 @@
 package br.com.uol.facade;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -45,6 +46,8 @@ public class PlayerFacadeImpl implements PlayerFacade {
 		List<PlayerDTO> playersDTO = new ArrayList<PlayerDTO>();
 		
 		players.stream().forEach(player -> playersDTO.add(this.modelMapper.map(player, PlayerDTO.class)));
+		
+		playersDTO.sort(Comparator.comparing(PlayerDTO::getGroup));
 		
 		return playersDTO;
 	}
